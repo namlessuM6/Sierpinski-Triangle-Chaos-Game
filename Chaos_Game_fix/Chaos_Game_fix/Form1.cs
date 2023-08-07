@@ -96,7 +96,6 @@ namespace Chaos_Game_fix
         private PointF[] Innertri(int n, float x1, float y1, float x2, float y2, float x3, float y3)
         {
             int l = level;
-            double ammount = Math.Pow(3, level);
             float a = midx(x1, x2);
             float b = midy(y1, y2);
             float c = midy(x2, x3);
@@ -107,7 +106,7 @@ namespace Chaos_Game_fix
             tripoints[0] = new PointF(a, b);
             tripoints[1] = new PointF(c, d);
             tripoints[2] = new PointF(e, f);
-            if(l > n)
+            if (l > n)
             {
                 n++;
                 g.DrawPolygon(pen, Innertri(n, x1, y1, a, b, e, f));
@@ -129,6 +128,7 @@ namespace Chaos_Game_fix
         {
             g.Clear(Color.White);
             g.DrawPolygon(pen, outerpoints);
+
             level = Levelselection();
             x = 470;
             y = 400;
@@ -139,6 +139,7 @@ namespace Chaos_Game_fix
                 level = Levelselection();
             };
             int n = 1;
+
             g.DrawPolygon(pen, Innertri(n, bluebtn.Location.X, bluebtn.Location.Y, redbtn.Location.X, redbtn.Location.Y, greenbtn.Location.X, greenbtn.Location.Y));
 
         }
