@@ -35,6 +35,10 @@
             this.startbtn = new System.Windows.Forms.Button();
             this.controler = new System.Windows.Forms.PictureBox();
             this.goalbtn = new System.Windows.Forms.Button();
+            this.winOutput = new System.Windows.Forms.TextBox();
+            this.buttonOutput = new System.Windows.Forms.TextBox();
+            this.trybutton = new System.Windows.Forms.Button();
+            this.addressbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.controler)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,10 +116,56 @@
             this.goalbtn.UseVisualStyleBackColor = true;
             this.goalbtn.Click += new System.EventHandler(this.Goalbtnclick);
             // 
+            // winOutput
+            // 
+            this.winOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.winOutput.Location = new System.Drawing.Point(662, 195);
+            this.winOutput.MaximumSize = new System.Drawing.Size(1000, 1000);
+            this.winOutput.Multiline = true;
+            this.winOutput.Name = "winOutput";
+            this.winOutput.ReadOnly = true;
+            this.winOutput.Size = new System.Drawing.Size(217, 50);
+            this.winOutput.TabIndex = 8;
+            // 
+            // buttonOutput
+            // 
+            this.buttonOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.buttonOutput.Location = new System.Drawing.Point(662, 286);
+            this.buttonOutput.MaximumSize = new System.Drawing.Size(1000, 1000);
+            this.buttonOutput.Multiline = true;
+            this.buttonOutput.Name = "buttonOutput";
+            this.buttonOutput.ReadOnly = true;
+            this.buttonOutput.Size = new System.Drawing.Size(217, 50);
+            this.buttonOutput.TabIndex = 9;
+            // 
+            // trybutton
+            // 
+            this.trybutton.Location = new System.Drawing.Point(790, 145);
+            this.trybutton.Name = "trybutton";
+            this.trybutton.Size = new System.Drawing.Size(75, 35);
+            this.trybutton.TabIndex = 10;
+            this.trybutton.Text = "Try again";
+            this.trybutton.UseVisualStyleBackColor = true;
+            this.trybutton.Click += new System.EventHandler(this.Trybutton_Click);
+            // 
+            // addressbutton
+            // 
+            this.addressbutton.Location = new System.Drawing.Point(790, 68);
+            this.addressbutton.Name = "addressbutton";
+            this.addressbutton.Size = new System.Drawing.Size(75, 35);
+            this.addressbutton.TabIndex = 11;
+            this.addressbutton.Text = "I can\'t see the goal";
+            this.addressbutton.UseVisualStyleBackColor = true;
+            this.addressbutton.Click += new System.EventHandler(this.Addressbutton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(919, 573);
+            this.Controls.Add(this.addressbutton);
+            this.Controls.Add(this.trybutton);
+            this.Controls.Add(this.buttonOutput);
+            this.Controls.Add(this.winOutput);
             this.Controls.Add(this.goalbtn);
             this.Controls.Add(this.startbtn);
             this.Controls.Add(this.greenbtn);
@@ -126,6 +176,7 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.controler)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,6 +188,10 @@
         private System.Windows.Forms.Button startbtn;
         private System.Windows.Forms.PictureBox controler;
         private System.Windows.Forms.Button goalbtn;
+        private System.Windows.Forms.TextBox winOutput;
+        private System.Windows.Forms.TextBox buttonOutput;
+        private System.Windows.Forms.Button trybutton;
+        private System.Windows.Forms.Button addressbutton;
     }
 }
 
