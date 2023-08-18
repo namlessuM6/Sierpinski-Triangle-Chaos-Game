@@ -1,6 +1,6 @@
 ﻿namespace Chaos_Game_fix
 {
-    partial class Form1
+    partial class Trianglegame
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Trianglegame));
             this.redbtn = new System.Windows.Forms.Button();
             this.bluebtn = new System.Windows.Forms.Button();
             this.greenbtn = new System.Windows.Forms.Button();
@@ -45,11 +45,11 @@
             // redbtn
             // 
             this.redbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.redbtn.Location = new System.Drawing.Point(337, 68);
+            this.redbtn.Location = new System.Drawing.Point(258, 38);
             this.redbtn.MaximumSize = new System.Drawing.Size(100, 30);
-            this.redbtn.MinimumSize = new System.Drawing.Size(75, 30);
+            this.redbtn.MinimumSize = new System.Drawing.Size(74, 30);
             this.redbtn.Name = "redbtn";
-            this.redbtn.Size = new System.Drawing.Size(75, 30);
+            this.redbtn.Size = new System.Drawing.Size(74, 30);
             this.redbtn.TabIndex = 0;
             this.redbtn.Text = "Red";
             this.redbtn.UseVisualStyleBackColor = true;
@@ -58,11 +58,11 @@
             // bluebtn
             // 
             this.bluebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.bluebtn.Location = new System.Drawing.Point(144, 400);
+            this.bluebtn.Location = new System.Drawing.Point(27, 400);
             this.bluebtn.MaximumSize = new System.Drawing.Size(100, 30);
-            this.bluebtn.MinimumSize = new System.Drawing.Size(75, 30);
+            this.bluebtn.MinimumSize = new System.Drawing.Size(74, 30);
             this.bluebtn.Name = "bluebtn";
-            this.bluebtn.Size = new System.Drawing.Size(75, 30);
+            this.bluebtn.Size = new System.Drawing.Size(74, 30);
             this.bluebtn.TabIndex = 1;
             this.bluebtn.Text = "Blue";
             this.bluebtn.UseVisualStyleBackColor = true;
@@ -71,11 +71,11 @@
             // greenbtn
             // 
             this.greenbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.greenbtn.Location = new System.Drawing.Point(529, 400);
+            this.greenbtn.Location = new System.Drawing.Point(487, 400);
             this.greenbtn.MaximumSize = new System.Drawing.Size(100, 30);
-            this.greenbtn.MinimumSize = new System.Drawing.Size(75, 30);
+            this.greenbtn.MinimumSize = new System.Drawing.Size(74, 30);
             this.greenbtn.Name = "greenbtn";
-            this.greenbtn.Size = new System.Drawing.Size(75, 30);
+            this.greenbtn.Size = new System.Drawing.Size(74, 30);
             this.greenbtn.TabIndex = 2;
             this.greenbtn.Text = "Green";
             this.greenbtn.UseVisualStyleBackColor = true;
@@ -84,7 +84,7 @@
             // startbtn
             // 
             this.startbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.startbtn.Location = new System.Drawing.Point(662, 68);
+            this.startbtn.Location = new System.Drawing.Point(620, 68);
             this.startbtn.MaximumSize = new System.Drawing.Size(100, 30);
             this.startbtn.MinimumSize = new System.Drawing.Size(75, 30);
             this.startbtn.Name = "startbtn";
@@ -97,7 +97,7 @@
             // controler
             // 
             this.controler.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("controler.BackgroundImage")));
-            this.controler.Location = new System.Drawing.Point(529, 400);
+            this.controler.Location = new System.Drawing.Point(511, 400);
             this.controler.Name = "controler";
             this.controler.Size = new System.Drawing.Size(5, 5);
             this.controler.TabIndex = 6;
@@ -106,7 +106,7 @@
             // goalbtn
             // 
             this.goalbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.goalbtn.Location = new System.Drawing.Point(662, 145);
+            this.goalbtn.Location = new System.Drawing.Point(620, 145);
             this.goalbtn.MaximumSize = new System.Drawing.Size(75, 35);
             this.goalbtn.MinimumSize = new System.Drawing.Size(75, 35);
             this.goalbtn.Name = "goalbtn";
@@ -118,20 +118,26 @@
             // 
             // winOutput
             // 
+            this.winOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.winOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.winOutput.Location = new System.Drawing.Point(662, 195);
-            this.winOutput.MaximumSize = new System.Drawing.Size(1000, 1000);
+            this.winOutput.Location = new System.Drawing.Point(620, 195);
+            this.winOutput.MaximumSize = new System.Drawing.Size(1000, 75);
+            this.winOutput.MinimumSize = new System.Drawing.Size(217, 50);
             this.winOutput.Multiline = true;
             this.winOutput.Name = "winOutput";
             this.winOutput.ReadOnly = true;
             this.winOutput.Size = new System.Drawing.Size(217, 50);
             this.winOutput.TabIndex = 8;
+            this.winOutput.Text = "The goal of the game is to get the black square into the highlighted green triang" +
+    "le by pushing the green, red, and blue buttons. Press Start to begin.";
             // 
             // buttonOutput
             // 
+            this.buttonOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.buttonOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.buttonOutput.Location = new System.Drawing.Point(662, 286);
-            this.buttonOutput.MaximumSize = new System.Drawing.Size(1000, 1000);
+            this.buttonOutput.Location = new System.Drawing.Point(620, 286);
+            this.buttonOutput.MaximumSize = new System.Drawing.Size(1000, 75);
+            this.buttonOutput.MinimumSize = new System.Drawing.Size(217, 50);
             this.buttonOutput.Multiline = true;
             this.buttonOutput.Name = "buttonOutput";
             this.buttonOutput.ReadOnly = true;
@@ -140,7 +146,10 @@
             // 
             // trybutton
             // 
-            this.trybutton.Location = new System.Drawing.Point(790, 145);
+            this.trybutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.trybutton.Location = new System.Drawing.Point(728, 145);
+            this.trybutton.MaximumSize = new System.Drawing.Size(75, 35);
+            this.trybutton.MinimumSize = new System.Drawing.Size(75, 35);
             this.trybutton.Name = "trybutton";
             this.trybutton.Size = new System.Drawing.Size(75, 35);
             this.trybutton.TabIndex = 10;
@@ -150,7 +159,10 @@
             // 
             // addressbutton
             // 
-            this.addressbutton.Location = new System.Drawing.Point(790, 68);
+            this.addressbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.addressbutton.Location = new System.Drawing.Point(728, 68);
+            this.addressbutton.MaximumSize = new System.Drawing.Size(75, 35);
+            this.addressbutton.MinimumSize = new System.Drawing.Size(75, 35);
             this.addressbutton.Name = "addressbutton";
             this.addressbutton.Size = new System.Drawing.Size(75, 35);
             this.addressbutton.TabIndex = 11;
@@ -158,10 +170,11 @@
             this.addressbutton.UseVisualStyleBackColor = true;
             this.addressbutton.Click += new System.EventHandler(this.Addressbutton_Click);
             // 
-            // Form1
+            // Trianglegame
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(919, 573);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(834, 461);
             this.Controls.Add(this.addressbutton);
             this.Controls.Add(this.trybutton);
             this.Controls.Add(this.buttonOutput);
@@ -172,8 +185,10 @@
             this.Controls.Add(this.bluebtn);
             this.Controls.Add(this.redbtn);
             this.Controls.Add(this.controler);
-            this.Name = "Form1";
+            this.MinimumSize = new System.Drawing.Size(850, 500);
+            this.Name = "Trianglegame";
             this.Text = "Form1";
+            this.ResizeEnd += new System.EventHandler(this.Trianglegame_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.controler)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

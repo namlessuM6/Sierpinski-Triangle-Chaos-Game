@@ -7,9 +7,9 @@ using Microsoft.VisualBasic;
 
 namespace Chaos_Game_fix
 {
-    public partial class Form1 : Form
+    public partial class Trianglegame : Form
     {
-        public Form1()
+        public Trianglegame()
         {
             InitializeComponent();
         }
@@ -33,7 +33,7 @@ namespace Chaos_Game_fix
         //random number for selection of addresses 
         private readonly Random r = new Random();
         //private double area;
-        private int win;
+        private int win = -5;
         private List<int> address;
         PointF rightCorner;
         Vector2 red;
@@ -41,6 +41,7 @@ namespace Chaos_Game_fix
         PointF topCorner;
         PointF leftCorner;
         int click;
+        //Trianglegame trianglegame = new Trianglegame();
 
 
         /// <summary>
@@ -54,8 +55,22 @@ namespace Chaos_Game_fix
             {
                 Button btn = (Button)sender;
                 //calls mid method to find new points for controller
-                x = Mid(x, btn.Location.X);
-                y = Mid(y, btn.Location.Y);
+                if (btn == bluebtn)
+                {
+                    x = Mid(x, (btn.Location.X + 75));
+                    y = Mid(y, btn.Location.Y);
+
+                }
+                else if (btn == redbtn)
+                {
+                    x = Mid(x, (btn.Location.X + 37));
+                    y = Mid(y, btn.Location.Y + 30);
+                }
+                else 
+                { 
+                    x = Mid(x, btn.Location.X);
+                    y = Mid(y, btn.Location.Y);
+                }
                 //applies new points to controller
                 controler.Location = new Point((int)x, (int)y);
                 buttonOutput.Text += btn.Text + ", ";
@@ -74,20 +89,24 @@ namespace Chaos_Game_fix
                         win = -1;
                     }
                 }
+                
             }
             else if (win > 0)
             {
                 MessageBox.Show("You Won, Stop Hitting the buttons");
             }
-            else
+            else if (win == -1)
             {
                 winOutput.Text = "You lose, you need to hit the goal in " + (level + 10) + " moves.";
                 click++;
                 if (click > (level + 12))
                 {
-                    MessageBox.Show("You lost start a new game");
+                    MessageBox.Show("You lost hit try again, new gaol, or new level.");
                 }
             }
+
+
+
         }
 
 
@@ -122,9 +141,9 @@ namespace Chaos_Game_fix
                 {
                     levelnum = 0;
                 }
-                if(levelnum > 6) 
+                if(levelnum > 7) 
                 {
-
+                    MessageBox.Show("Depending on the size of the triangle the game may be unplayable past level 7.");
                 }
                 return levelnum;
             }
@@ -184,9 +203,9 @@ namespace Chaos_Game_fix
         private void Startbtnclick(object sender, EventArgs e)
         {
             //vector from green button to blue button
-            blue = new Vector2(bluebtn.Location.X - greenbtn.Location.X, bluebtn.Location.Y - greenbtn.Location.Y);
+            blue = new Vector2((bluebtn.Location.X + 75) - greenbtn.Location.X, bluebtn.Location.Y - greenbtn.Location.Y);
             // vector from green button to red button
-            red = new Vector2(redbtn.Location.X - greenbtn.Location.X, redbtn.Location.Y - greenbtn.Location.Y);
+            red = new Vector2(redbtn.Location.X + 37 - greenbtn.Location.X, redbtn.Location.Y + 30 - greenbtn.Location.Y);
             //refreshes application and starts graphics
             Refreshform();
             //clears the form of any drawings
@@ -207,9 +226,9 @@ namespace Chaos_Game_fix
             //makes an array of points to draw the large outer triangle
             PointF[] outerpoints = new PointF[]
             {
-                new PointF(bluebtn.Location.X, bluebtn.Location.Y),
+                new PointF((bluebtn.Location.X + 75), bluebtn.Location.Y),
                 new PointF(greenbtn.Location.X, greenbtn.Location.Y),
-                new PointF(redbtn.Location.X, redbtn.Location.Y)
+                new PointF((redbtn.Location.X + 37), redbtn.Location.Y + 30)
             };
             //draws the outer triangle
             g.DrawPolygon(pen, outerpoints);
@@ -218,7 +237,7 @@ namespace Chaos_Game_fix
             //timer for drawing should remove before final release
             var watch = System.Diagnostics.Stopwatch.StartNew();
             //draw inner triangles
-            g.DrawPolygon(pen, Innertri(n, bluebtn.Location.X, bluebtn.Location.Y, redbtn.Location.X, redbtn.Location.Y, greenbtn.Location.X, greenbtn.Location.Y));
+            g.DrawPolygon(pen, Innertri(n, (bluebtn.Location.X + 75), bluebtn.Location.Y, (redbtn.Location.X + 37), redbtn.Location.Y + 30, greenbtn.Location.X, greenbtn.Location.Y));
             //stop and display time
             watch.Stop();
             var mils = watch.ElapsedMilliseconds;
@@ -381,50 +400,40 @@ namespace Chaos_Game_fix
             }
         }
 
-/*
-            double side0C = Distace(fillTriangle[0].X, controler.Location.X, fillTriangle[0].Y, controler.Location.Y);
-            double side01 = Distace(fillTriangle[0].X, fillTriangle[1].X, fillTriangle[0].Y, fillTriangle[1].Y);
-            double side02 = Distace(fillTriangle[0].X, fillTriangle[2].X, fillTriangle[0].Y, fillTriangle[2].Y);
-            double side1C = Distace(fillTriangle[1].X, controler.Location.X, fillTriangle[1].Y, controler.Location.Y);
-            double side12 = Distace(fillTriangle[1].X, fillTriangle[2].X, fillTriangle[1].Y, fillTriangle[2].Y);
-            double side2C = Distace(fillTriangle[2].X, controler.Location.X, fillTriangle[2].Y, controler.Location.Y);
-            double area1 = Heron(side0C, side01, side1C);
-            double area2 = Heron(side0C, side02, side2C);
-            double area3 = Heron(side1C, side2C, side12);
-            double areaControler = area1 + area2 + area3;
-            MessageBox.Show("area: " + area + "controller: " + areaControler);
-            if (Epsilon(area1, 0) || Epsilon(area2, 0) || Epsilon(area3, 0))
-            {
-                return false;
-            }
-            if (Epsilon(areaControler,  area))
-            {
-                win++;
-                return true;
-            }
-            else
-                return false;
-        }
+        /*
+                    double side0C = Distace(fillTriangle[0].X, controler.Location.X, fillTriangle[0].Y, controler.Location.Y);
+                    double side01 = Distace(fillTriangle[0].X, fillTriangle[1].X, fillTriangle[0].Y, fillTriangle[1].Y);
+                    double side02 = Distace(fillTriangle[0].X, fillTriangle[2].X, fillTriangle[0].Y, fillTriangle[2].Y);
+                    double side1C = Distace(fillTriangle[1].X, controler.Location.X, fillTriangle[1].Y, controler.Location.Y);
+                    double side12 = Distace(fillTriangle[1].X, fillTriangle[2].X, fillTriangle[1].Y, fillTriangle[2].Y);
+                    double side2C = Distace(fillTriangle[2].X, controler.Location.X, fillTriangle[2].Y, controler.Location.Y);
+                    double area1 = Heron(side0C, side01, side1C);
+                    double area2 = Heron(side0C, side02, side2C);
+                    double area3 = Heron(side1C, side2C, side12);
+                    double areaControler = area1 + area2 + area3;
+                    MessageBox.Show("area: " + area + "controller: " + areaControler);
+                    if (Epsilon(area1, 0) || Epsilon(area2, 0) || Epsilon(area3, 0))
+                    {
+                        return false;
+                    }
+                    if (Epsilon(areaControler,  area))
+                    {
+                        win++;
+                        return true;
+                    }
+                    else
+                        return false;
+                }
 
-        private double Heron(double side1, double side2, double side3)
-        {
+                private double Heron(double side1, double side2, double side3)
+                {
 
-            double s = 0.5 * (side1 + side2 + side3);
-            return Math.Sqrt(s * (s - side1) * (s - side2) * (s - side3));
-        }
-        /// <summary>
-        /// calculates the distance between 2 points
-        /// </summary>
-        /// <param name="x1">x value of point 1</param>
-        /// <param name="x2">x value of point 2</param>
-        /// <param name="y1">y value of point 1</param>
-        /// <param name="y2">y value of point 2</param>
-        /// <returns>distance beween two points given the coordinates</returns>
-        private double Distace(int x1, int x2, int y1, int y2)
-        {
-            return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2));
-        }
-
+                    double s = 0.5 * (side1 + side2 + side3);
+                    return Math.Sqrt(s * (s - side1) * (s - side2) * (s - side3));
+                }
+        
+     
+        
         private bool Epsilon(double one, double two) {
             return Math.Abs(one - two) < Math.Pow(1, -1000);
         }
@@ -513,6 +522,41 @@ namespace Chaos_Game_fix
             }
         }
 
+        private void Trianglegame_ResizeEnd(object sender, EventArgs e)
+        {
+            double scaler = 0.001;
+            red = new Vector2(redbtn.Location.X - greenbtn.Location.X, redbtn.Location.Y - greenbtn.Location.Y);
 
+            try
+            {
+                while (true)
+                {
+                    greenbtn.Location = new Point(greenbtn.Location.X - (int)(scaler * red.X), greenbtn.Location.Y - (int)(scaler * red.Y));
+                    bluebtn.Location = new Point(bluebtn.Location.X + (int)(red.X * scaler), bluebtn.Location.Y - (int)(red.Y * scaler));
+                    if (greenbtn.Location.X > ClientSize.Width || greenbtn.Location.Y + 30 > ClientSize.Height || bluebtn.Location.Y + 30 > ClientSize.Height || bluebtn.Location.X < 0)
+                    {
+                        throw new PointOutOfBoundsException();
+                    }
+                    scaler += 0.05;
+                }
+            }catch(PointOutOfBoundsException)
+            {
+                scaler = 0.001;
+                while(greenbtn.Location.X > ClientSize.Width || greenbtn.Location.Y + 30 > ClientSize.Height || bluebtn.Location.Y + 30 > ClientSize.Height || bluebtn.Location.X < 0)
+                {
+                    greenbtn.Location = new Point(greenbtn.Location.X + (int)(scaler * red.X), greenbtn.Location.Y + (int)(scaler * red.Y));
+                    bluebtn.Location = new Point(bluebtn.Location.X - (int)(red.X * scaler), bluebtn.Location.Y + (int)(red.Y * scaler));
+                    scaler += 0.0001;
+                }
+            }
+            if(win == 0)
+            {
+                MessageBox.Show("Error Form Resized during game. restarting");
+                startbtn.PerformClick();
+            }
+            else
+                MessageBox.Show("Form Resized");
+            
+        }
     }
 }
