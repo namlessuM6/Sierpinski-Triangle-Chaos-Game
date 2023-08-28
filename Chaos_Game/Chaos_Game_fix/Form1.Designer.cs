@@ -45,32 +45,35 @@
             // redbtn
             // 
             this.redbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.redbtn.Location = new System.Drawing.Point(258, 38);
+            this.redbtn.BackColor = System.Drawing.Color.Red;
+            this.redbtn.Location = new System.Drawing.Point(258, 37);
             this.redbtn.MaximumSize = new System.Drawing.Size(100, 30);
             this.redbtn.MinimumSize = new System.Drawing.Size(74, 30);
             this.redbtn.Name = "redbtn";
             this.redbtn.Size = new System.Drawing.Size(74, 30);
             this.redbtn.TabIndex = 0;
             this.redbtn.Text = "Red";
-            this.redbtn.UseVisualStyleBackColor = true;
+            this.redbtn.UseVisualStyleBackColor = false;
             this.redbtn.Click += new System.EventHandler(this.Btnclick);
             // 
             // bluebtn
             // 
             this.bluebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.bluebtn.Location = new System.Drawing.Point(27, 400);
+            this.bluebtn.BackColor = System.Drawing.Color.Blue;
+            this.bluebtn.Location = new System.Drawing.Point(29, 400);
             this.bluebtn.MaximumSize = new System.Drawing.Size(100, 30);
             this.bluebtn.MinimumSize = new System.Drawing.Size(74, 30);
             this.bluebtn.Name = "bluebtn";
             this.bluebtn.Size = new System.Drawing.Size(74, 30);
             this.bluebtn.TabIndex = 1;
             this.bluebtn.Text = "Blue";
-            this.bluebtn.UseVisualStyleBackColor = true;
+            this.bluebtn.UseVisualStyleBackColor = false;
             this.bluebtn.Click += new System.EventHandler(this.Btnclick);
             // 
             // greenbtn
             // 
             this.greenbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.greenbtn.BackColor = System.Drawing.Color.Green;
             this.greenbtn.Location = new System.Drawing.Point(487, 400);
             this.greenbtn.MaximumSize = new System.Drawing.Size(100, 30);
             this.greenbtn.MinimumSize = new System.Drawing.Size(74, 30);
@@ -78,7 +81,7 @@
             this.greenbtn.Size = new System.Drawing.Size(74, 30);
             this.greenbtn.TabIndex = 2;
             this.greenbtn.Text = "Green";
-            this.greenbtn.UseVisualStyleBackColor = true;
+            this.greenbtn.UseVisualStyleBackColor = false;
             this.greenbtn.Click += new System.EventHandler(this.Btnclick);
             // 
             // startbtn
