@@ -42,3 +42,13 @@ D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Sierpinski-Triangle-Chaos-Game-
 D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.exe
 D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.pdb
 D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.Trianglegame.resources
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\bin\Release\Chaos_Game_fix.exe.config
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\bin\Release\Chaos_Game_fix.exe
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\bin\Release\Chaos_Game_fix.pdb
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.csproj.AssemblyReference.cache
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.Trianglegame.resources
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.Properties.Resources.resources
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.csproj.GenerateResource.cache
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.csproj.CoreCompileInputs.cache
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.exe
+D:\C# coding\Sierpinski-Triangle-Chaos-Game-main\Chaos_Game\Chaos_Game_fix\obj\Release\Chaos_Game_fix.pdb

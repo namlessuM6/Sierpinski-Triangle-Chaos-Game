@@ -50,6 +50,7 @@ namespace Chaos_Game_fix
         PointF leftCorner;
         //used to kep track of the ammount of button presses
         int click;
+        bool debug = false;
 
 
         /// <summary>
@@ -160,24 +161,24 @@ namespace Chaos_Game_fix
             g.DrawPolygon(pen, outerpoints);
             //start counter for drawing 
             int n = 1;
-            //timer for drawing should remove before final release
-            var watch = System.Diagnostics.Stopwatch.StartNew();
             //draw inner triangles
             g.DrawPolygon(pen, Innertri(n, (bluebtn.Location.X + 74), bluebtn.Location.Y, (redbtn.Location.X + 37), redbtn.Location.Y + 30, greenbtn.Location.X, greenbtn.Location.Y));
-            //stop and display time
-            watch.Stop();
-            var mils = watch.ElapsedMilliseconds;
-            MessageBox.Show("That took " + (float)mils / 1000 + " seconds");
             //change start button text to reflect new game 
             startbtn.Text = "New Level";
             //create goal triangle
-            if (Equilateralcheck() == false)
+            int c = 0;
+            while (Equilateralcheck() == false && c < 3)
             {
-                MessageBox.Show("Error not equilateral");
+                if (c > 3)
+                {
+                    MessageBox.Show("Error not equilateral");
+                }
+                c++;
 
             }
-            //sets the x and y values of the controller
-            x = greenbtn.Location.X;
+            winOutput.Text = "You should be able to reach the goal in " + (level + 2) + " moves you must reach the goal in " + (level + 10) + " moves or you lose";
+           //sets the x and y values of the controller
+           x = greenbtn.Location.X;
             y = greenbtn.Location.Y;
             controler.Location = new Point((int)x, (int)y);
             Goalfill(0);
@@ -187,13 +188,13 @@ namespace Chaos_Game_fix
 
 
         /// <summary>
-        /// sets the goal triangle
+        /// sets a new goal triangle
         /// </summary>
         /// <param name="sender">tells the method which button was clicked</param>
         /// <param name="e">allows method to be called form a button click</param>
         private void Goalbtnclick(object sender, EventArgs e)
         {
-            //try to erase and set goal triangle if game is not started this will cause an error
+            //try to erase and set a new goal triangle if game is not started this will cause an error
             try
             {
                 Goalfill(1);
@@ -228,11 +229,11 @@ namespace Chaos_Game_fix
             {
                 winOutput.Text = string.Empty;
                 buttonOutput.Text = string.Empty;
-
                 //reset controller position
                 x = greenbtn.Location.X;
                 y = greenbtn.Location.Y;
                 controler.Location = new Point((int)x, (int)y);
+                //refills triangle
                 g.FillPolygon(brush, fillTriangle);
                 win = 0;
                 click = 0;
@@ -250,6 +251,7 @@ namespace Chaos_Game_fix
         /// <param name="e">allows method to be called on button click</param>
         private void Addressbutton_Click(object sender, EventArgs e)
         {
+            //prints the address of the goal triangle, if the game is not started error message is dispalyed instead
             try
             {
                 winOutput.Text = "there's too many triangles to see the goal, here's the address of the goal: " + Listaddress(address);
@@ -444,7 +446,7 @@ namespace Chaos_Game_fix
 
 
         /// <summary>
-        /// takes a string and makes it printable
+        /// takes a list and makes it printable
         /// </summary>
         /// <param name="list">The list to be printed</param>
         /// <returns>The list contents as a string</returns>
@@ -471,6 +473,7 @@ namespace Chaos_Game_fix
         /// <returns>returns true if the player has won</returns>
         private bool Didyouwin()
         {
+            //if controller is in the goal trangle then return true
             if (controler.Location.X > leftCorner.X)
             {
                 if (controler.Location.X < rightCorner.X)
@@ -510,25 +513,32 @@ namespace Chaos_Game_fix
         /// <param name="e">allows method to be called on button click</param>
         private void Trianglegame_ResizeEnd(object sender, EventArgs e)
         {
+            //scaler to change how much the buttons are moved
             double scaler = 0.001;
+            //reset red vector to make sure it is correct
             red = new Vector2(redbtn.Location.X + 37 - greenbtn.Location.X, redbtn.Location.Y + 30 - greenbtn.Location.Y);
-
+            //try statement to enlarge triangle until the buttons are off screen
             try
             {
                 while (true)
                 {
                     greenbtn.Location = new Point(greenbtn.Location.X - (int)(scaler * red.X), greenbtn.Location.Y - (int)(scaler * red.Y));
                     bluebtn.Location = new Point(bluebtn.Location.X + (int)(red.X * scaler), bluebtn.Location.Y - (int)(red.Y * scaler));
+                    //if buttons are off screen throw exception
                     if (greenbtn.Location.X > ClientSize.Width || greenbtn.Location.Y + 30 > ClientSize.Height || bluebtn.Location.Y + 30 > ClientSize.Height || bluebtn.Location.X < 0)
                     {
                         throw new PointOutOfBoundsException();
                     }
+                    //change scaler to move buttons more
                     scaler += 0.05;
                 }
             }
+            //if exception is thrown
             catch (PointOutOfBoundsException)
             {
+                //reset scaler
                 scaler = 0.001;
+                //shrinkl triangle until buttoins are just bartly on screen
                 while (greenbtn.Location.X > ClientSize.Width || greenbtn.Location.Y + 30 > ClientSize.Height || bluebtn.Location.Y + 30 > ClientSize.Height || bluebtn.Location.X < 0)
                 {
                     greenbtn.Location = new Point(greenbtn.Location.X + (int)(scaler * red.X), greenbtn.Location.Y + (int)(scaler * red.Y));
@@ -536,6 +546,7 @@ namespace Chaos_Game_fix
                     scaler += 0.0001;
                 }
             }
+            //if game is active restart game
             if (win == 0)
             {
                 MessageBox.Show("Error Form Resized during game. you must restart");
@@ -553,12 +564,23 @@ namespace Chaos_Game_fix
         /// <returns>returns true is the triangle is equilaterial </returns>
         private bool Equilateralcheck()
         {
+            //finds the cosine of the angle of the green button
             double cosG = Dotproduct() / (Magnitude(red) * Magnitude(blue));
-            MessageBox.Show("dot " + Dotproduct());
-            MessageBox.Show("cosG " + cosG);
+            //debugf messages
+            if (debug == true)
+            {
+                MessageBox.Show("dot " + Dotproduct());
+                MessageBox.Show("cosG " + cosG);
+            }
+            //using the cosine rule finds the length of the green side
             double g = Math.Sqrt((Math.Pow(Magnitude(blue), 2) + Math.Pow(Magnitude(red), 2)) - (2 * Magnitude(blue) * Magnitude(red) * cosG));
-            double cosR = Dotproduct() / (g * Magnitude(red));
-            MessageBox.Show("Red side: " + Magnitude(red) + "\ngreen side " + g + "\nblue side " + Magnitude(blue) + "\ncos red: " + cosR);
+            //debug messages
+            if (debug == true)
+            {
+                double cosR = Dotproduct() / (g * Magnitude(red));
+                MessageBox.Show("Red side: " + Magnitude(red) + "\ngreen side " + g + "\nblue side " + Magnitude(blue) + "\ncos red: " + cosR);
+            }
+            //returns wether or not the legth of the sides are within 1 pixel of eachother 
             return Epsilon(g, Magnitude(red)) && Epsilon(g, Magnitude(blue)) && Epsilon(Magnitude(red), Magnitude(blue));
 
         }
